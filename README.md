@@ -1,37 +1,37 @@
 # PhantomDash
 
-An in-car digital dash for VAG cars. It shows live engine data from a [PhantomCAN](https://github.com/NotActuallyBlue/PhantomCAN) dongle on a 5-inch touchscreen,
-records your drives to an SD card, and lets you look at the logs on the dash or download them to your phone. No laptop and no app are needed.
+An in-car digital dash for VAG cars. It shows live engine data from a [PhantomCAN](https://github.com/NotActuallyBlue/PhantomCAN) dongle on a 5-inch screen: big gauges and shift
+lights, nothing else. **You set it up from your phone**, once or twice, sitting back in the seat instead of reaching into the dash. No app to install: the dash serves its own web page.
 
-**Status: in development.** PhantomDash has not been released. The dash software runs and has been tested in a desktop simulator and against the dongle on a test
-board (including a short drive in a Golf Mk7). It has **not yet run on the production touchscreen board**, so everything below describes what the software is built
+**Status: in development.** PhantomDash has not been released. It has been tested in a desktop simulator and against the dongle on a test board (including a short drive in a Golf Mk7),
+and the setup page has been used on the real screen board to pair with a dongle. It is **not yet finished or tested in a car on its final hardware**, so everything below describes what the software is built
 to do, not a finished product. Features and screens can still change.
 
 **Firmware downloads** will appear in this page's [Releases](../../releases) section: the update file (`phantomdash.bin`) and a checksum file. There is no release yet.
 
-**Contents:** [What it does](#what-it-does) · [What you need](#what-you-need) · [Supported cars](#supported-cars) · [What has been tested](#what-has-been-tested) · [First start and pairing](#first-start-and-pairing) · [The screens](#the-screens) ·
-[Recording and logs](#recording-and-logs) · [Getting logs to your phone](#getting-logs-to-your-phone) · [Driving lockout](#driving-lockout) ·
-[Updating the firmware](#updating-the-firmware) · [Troubleshooting](#troubleshooting) · [Safety and legal](#safety-and-legal) · [Credits and licences](#credits-and-licences)
+**Contents:** [What it does](#what-it-does) · [What you need](#what-you-need) · [Supported cars](#supported-cars) · [What has been tested](#what-has-been-tested) · [First start](#first-start) ·
+[The phone page](#the-phone-page) · [Recording and logs](#recording-and-logs) · [Driving lockout](#driving-lockout) · [Updating the firmware](#updating-the-firmware) ·
+[Troubleshooting](#troubleshooting) · [Safety and legal](#safety-and-legal) · [Credits and licences](#credits-and-licences)
 
 ---
 
 ## What it does
 
-* **Four big gauges** (boost, oil temperature, knock, coolant temperature by default; you can put any value from the list on any gauge) in seven-segment or italic numbers, in six colour themes.
+![The dash: four gauges and the shift lights](img/gauges.png)
+
+* **Four big gauges** (by default boost, oil temperature, knock and coolant temperature) in seven-segment or italic numbers, in six colour themes. You choose what each gauge shows from your phone.
 * **Shift lights:** a bar of 16 lights across the top that fills as the engine speed rises and turns fully red at 7,000 rpm.
-* **Recording:** one button starts a log; the dash writes a log file and a spreadsheet (CSV) file side by side on the SD card.
-* **Log viewer on the dash:** graph any recorded values, zoom with two fingers, double-tap to fit the whole log.
-* **Wi-Fi download:** scan a QR code with your phone to join the dash's own network and download one log or all of them. Nothing to install.
-* **Wi-Fi firmware update** the same way, and a **clock**: it sets itself from your phone when you open a download page, or you set it by hand.
+* **Set up from your phone:** record, pair the dongle, choose the gauges and what is logged, theme, units, the engine list, the clock, download your logs, update the firmware.
+* **Recording:** a log file and a spreadsheet (CSV) file side by side on the SD card. While recording, a red line shows along the bottom edge of the screen.
 * **ECU detection:** the dash reads which engine computer the car has (through the dongle) and picks the matching list of values by itself. You can still choose by hand.
-* **Pure gauge view while driving:** above 10 mph the menus lock and only the gauges show.
+* **Pure gauge view while driving:** above 10 mph the phone page refuses changes, so nobody fiddles with it on the move.
 
 ## What you need
 
 * A **PhantomCAN dongle** in the car's OBD-II port, running DASH mode (see the dongle's README). The dash does not read the car itself.
-* The dash: a Waveshare ESP32-S3-Touch-LCD-5 (800 x 480) running PhantomDash, powered from the car (6 to 36 V; a fused feed is advised).
-* A **microSD card** (FAT32). It holds the list of values the dash can read, your settings and your logs.
-* The **list of values** (names, units, formulas and addresses per ECU software version) for your car. It is already on the microSD card supplied with the dash, as `master.tsv`. The lists are not part of this repository.
+* The dash: a 5-inch 800 x 480 ESP32-S3 display board from Waveshare running PhantomDash, powered from the car (6 to 36 V; a fused feed is advised).
+* A **microSD card** (FAT32). It holds the list of values the dash can read, your settings and your logs. It is already on the card supplied with the dash, as `master.tsv`. The lists are not part of this repository.
+* A **phone** with a browser (any phone).
 
 ## Supported cars
 
@@ -45,79 +45,62 @@ PhantomDash reads what the engine computer answers to standard diagnostic reques
 
 Other engines and cars may work with the OBD-II list (the standard emissions-related values), but they are not tested.
 
-## First start and pairing
-
-The dash and the dongle talk over an encrypted radio link, and they have to be paired once. Nothing is typed.
-
-1. On the dongle, put it into pairing: hold **KEY** for 2 seconds. Its screen shows a six-digit code.
-2. On the dash, open the pull-down menu, then **SETTINGS**, then **PAIR**. The dash finds the dongle by itself and shows a six-digit code.
-3. If both screens show **the same six digits**, **hold the button on the dash for one second**. If they differ, tap **DIFFERENT**.
-
-Pairing is remembered. The dash then asks the dongle which engine computer is in the car and picks the matching list of values by itself (see [Supported cars](#supported-cars)). If you choose a list by hand on the **GAUGES** page, the dash stops choosing for you.
 
 ## What has been tested
 
 Plainly, so you know what you are getting while this is in development:
 
-* **Tested in the desktop simulator:** every screen on this page, the log graph, the download and update pages (served by a real web server), the driving lockout.
-* **Tested on a small test board** (not the final screen) against the dongle: the encrypted radio link, pairing, live data, and a short drive in a Golf Mk7 where the engine computer accepted all 47 requested values with no lost frames. The values themselves were not recorded, so the scale of the list was not checked in that drive.
-* **Not yet tested:** the touchscreen board itself (the firmware for it builds, it has not been run), pairing by the board's button, the Wi-Fi firmware update from a phone, the clock from a phone, the real engine-computer detection in the car, radio range, and long drives.
+* **Tested in the desktop simulator:** the gauge screen, the welcome screen, the phone page with every action (through a real web server), the driving lockout.
+* **Tested on a small test board** (not the final screen) against the dongle: the encrypted radio link, live data, and a short drive in a Golf Mk7 where the engine computer accepted all 47 requested values with no lost frames. The values themselves were not recorded, so the scale of the list was not checked in that drive.
+* **Tested on the real screen board:** it starts, shows the gauges and the welcome screen, serves its own Wi-Fi network and the phone page, and **pairs with a dongle from the phone page** (the dongle was on the bench, not in a car).
+* **Not yet tested:** a car drive with the real board, the SD card and list on the board, the firmware update from a phone, recording on the board, radio range, the effect of the always-on Wi-Fi on the link to the dongle, and long drives.
 
-## The screens
+## First start
 
-Pictures from the desktop simulator with made-up values (the dash itself has not been photographed yet).
+When the dash starts it shows a welcome screen with two QR codes:
 
-| Gauges | Pull-down menu |
-|---|---|
-| ![Four gauges and the shift lights](img/main.png) | ![The menu pulled down over the gauges](img/shade.png) |
+![The welcome screen: scan the first code to join the Wi-Fi, the second to open the page](img/welcome.png)
 
-| Settings | Logs |
-|---|---|
-| ![Settings: themes, units, number style](img/settings.png) | ![The list of recorded logs](img/logs.png) |
+1. Scan the **first code** with your phone's camera to join the dash's Wi-Fi (the network name and password are printed under it). The dash keeps its password, so your phone joins by itself next time.
+2. Scan the **second code** (or open `http://192.168.4.1/`) to open the phone page. If your phone says "connected without internet" and shows nothing, tap the network's **Manage router** link (Android) or open the address in the browser.
+3. The welcome screen leaves a few seconds after the page opens (or after three minutes). It shows again every time the dash starts.
 
-| Log graph | Pairing |
-|---|---|
-| ![A log drawn as a graph](img/graph.png) | ![Pairing: the same six digits on both screens](img/pair.png) |
+## The phone page
 
-![Update, step 1: get the file](img/update.png)
+![The setup page on a phone](img/phone_setup.png)
 
+* **Status:** recording, the engine computer the dongle found, the list in use, the dongle link.
+* **RECORD / STOP:** start and stop a log.
+* **Gauges:** tap a gauge to choose what it shows from the list; mark values to record.
+* **Engine list:** automatic (the dash picks the list from the engine computer) or choose by hand.
+* **Theme, units, numbers:** six colour themes, imperial or metric, digital or italic numbers.
+* **Pairing:** hold **KEY** on the dongle for 2 seconds, tap **Start pairing**. Both screens show the same six digits: tap **Same code** on the page, then press **KEY** on the dongle. If they differ, tap **Different**.
+* **Clock:** it sets itself from your phone when you open the page; there is also a button.
+* **Logs tab:** download any log (CSV for a spreadsheet, or the binary file) or all of them as a ZIP, and update the firmware.
 
-The main screen shows only the shift lights and the four gauges. **Swipe down from the top** for the menu: **RECORD** (it becomes STOP while recording), **GAUGES**, **LOGS**, **SETTINGS** and the link state.
+![Pairing on the phone page](img/phone_pair.png)
 
-* **GAUGES:** pick the ECU software, browse the values the list has for it, and tap one to put it on a gauge or add it to the log.
-* **LOGS:** your recorded drives, newest first, with their dates. Tap a log to graph it. The `...` button on a row opens **DOWNLOAD** and **ERASE** for that log.
-* **SETTINGS:** theme, units (imperial or metric), number style (digital or italic), and the buttons **PAIR**, **CLOCK** and **UPDATE**.
-* Tapping the link state in the menu opens a small developer page with link statistics.
+Every action shows a message at the top of the page ("Recording started", "Not while driving", and so on), so you always see whether it worked.
 
 ## Recording and logs
 
-Tap **RECORD** in the menu to start and **STOP** to finish. The dash records the values you added to the log list (the GAUGES page) at 10 times a second.
+Tap **RECORD** on the phone page to start and **STOP** to finish. The dash records the values you marked on the gauge picker, at 10 times a second.
 
 * Each log is two files on the card: `log_0001.pdl` (the exact record of what the car sent) and `log_0001.csv` (the same values as a spreadsheet, in the units you had chosen at the time).
 * A new file is started automatically after 64 MB, or if you change the values being logged. A power cut loses at most the last second.
-* Recording stops cleanly when the card is nearly full. The RECORD button says `NO CARD`, `SD FULL` or `NO VALUES` when it cannot start.
-* Open the **LOGS** page and tap a log to see it as a graph, full screen. Drag to move, pinch (two fingers) to zoom, double-tap to fit everything.
-
-## Getting logs to your phone
-
-1. Open **LOGS**. Tap **DOWNLOAD ALL**, or the `...` on one log and then **DOWNLOAD**.
-2. Scan the QR code on the dash with your phone's camera. It joins the dash's Wi-Fi network (a new password each time).
-3. The download page opens by itself. If your phone says "connected without internet" and shows nothing, tap the network's **Manage router** link (Android) or open `http://192.168.4.1` in the browser.
-4. Tap the log you want (CSV for a spreadsheet, or the binary file), or **download all** as one ZIP.
-5. Tap **DONE** on the dash. The Wi-Fi network turns off.
-
-Or take the SD card out and read the `.csv` files on a computer.
+* Recording stops cleanly when the card is nearly full. The page says `NO CARD`, `SD FULL` or `NO VALUES` when it cannot start.
+* Download the logs from the **Logs** tab, or take the SD card out and read the `.csv` files on a computer.
 
 ## Driving lockout
 
-Above 10 mph the dash shows only the gauge screen and ignores the menus. It unlocks again below 9 mph. If the speed is missing for more than 5 seconds, it unlocks so you are never locked out of a stopped car. Pairing, updates, clock and downloads are only available when parked.
+Above 10 mph the page refuses changes ("Not while driving"); only the clock is accepted. It unlocks again below 9 mph. If the speed is missing for more than 5 seconds, it unlocks so you are never locked out of a stopped car.
 
 ## Updating the firmware
 
-You can update over Wi-Fi without any cable. It takes two steps, and the first has to happen while your phone still has internet.
+You can update over Wi-Fi without any cable. The first step has to happen while your phone still has internet, because the dash's own network has none.
 
-1. **Get the file.** On the dash open **SETTINGS**, **UPDATE**. Step 1 shows a QR code for this page's [Releases](../../releases). Scan it and download `phantomdash.bin` to your phone. (The dash's own network has no internet, so do this first.)
-2. **Send the file.** Tap **NEXT**. Scan the new QR code to join the dash's Wi-Fi, open the page (use **Manage router** if the phone says "connected without internet"), tap **Choose the update file**, and pick `phantomdash.bin`. The upload starts at once and the dash restarts by itself.
+1. **Get the file.** On your phone, download `phantomdash.bin` from this page's [Releases](../../releases).
+2. **Send the file.** Join the dash's Wi-Fi, open the phone page, go to the **Logs** tab, tap **Choose the update file** and pick `phantomdash.bin`. The upload starts at once and the dash restarts by itself.
 
 Only the PhantomDash file is accepted; the dongle's file is refused with a message. If the new software does not start properly, the dash goes back to the previous version on its own.
 
@@ -125,18 +108,21 @@ Only the PhantomDash file is accepted; the dongle's file is refused with a messa
 
 | Problem | Try this |
 |---|---|
-| The gauges show `--` | The dongle is not connected or has no data. Check the link state in the menu; pair again if needed. |
+| The gauges show `--` | The dongle is not connected or has no data. Check the link on the page; pair again if needed. |
+| The page says "No list of values found" | The card has no `master.tsv`. Put the card in the dash and restart it. |
 | RECORD says `NO CARD` | Put in a FAT32 microSD card. |
-| RECORD says `NO VALUES` | The card has no `master.tsv`, or nothing is on the log list. Add values on the GAUGES page. |
-| The menu does not open | The car is moving faster than 10 mph; slow down or stop. |
-| The download page does not open | Open `http://192.168.4.1` in the browser, or use the network's **Manage router** link. |
-| The update page does not open a file picker | Open `http://192.168.4.1` in your phone's normal browser instead of the pop-up sign-in window. |
+| RECORD says `NO VALUES` | Nothing is marked to record. Mark values on the gauge picker. |
+| "Not while driving" | The car is moving faster than 10 mph; slow down or stop. |
+| The page does not open | Open `http://192.168.4.1/` in the browser, or use the network's **Manage router** link. |
+| Pairing times out | Both sides need your confirmation within 45 seconds: **Same code** on the page, then **KEY** on the dongle. |
+| The update page does not open a file picker | Open `http://192.168.4.1/` in your phone's normal browser instead of the pop-up sign-in window. |
 
 ## Safety and legal
 
 PhantomDash shows what the engine computer reports. It is not a substitute for the car's own warning lights and gauges, and its warning limits are defaults, not
 manufacturer limits. Do not operate the touchscreen while driving. Use at your own risk; there is no warranty. The dash does not change anything in the car.
 It does not hide or alter any fault codes or emissions data.
+
 
 ## Credits and licences
 
