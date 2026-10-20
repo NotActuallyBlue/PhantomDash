@@ -51,7 +51,7 @@ The dash and the dongle talk over an encrypted radio link, and they have to be p
 
 1. On the dongle, put it into pairing: hold **KEY** for 2 seconds. Its screen shows a six-digit code.
 2. On the dash, open the pull-down menu, then **SETTINGS**, then **PAIR**. The dash finds the dongle by itself and shows a six-digit code.
-3. If both screens show **the same six digits**, **hold the button on the dash for one second** (or hold **BOOT** on the board). If they differ, tap **DIFFERENT**.
+3. If both screens show **the same six digits**, **hold the button on the dash for one second**. If they differ, tap **DIFFERENT**.
 
 Pairing is remembered. The dash then asks the dongle which engine computer is in the car and picks the matching list of values by itself (see [Supported cars](#supported-cars)). If you choose a list by hand on the **GAUGES** page, the dash stops choosing for you.
 
