@@ -31,7 +31,7 @@ to do, not a finished product. Features and screens can still change.
 * A **PhantomCAN dongle** in the car's OBD-II port, running DASH mode (see the dongle's README). The dash does not read the car itself.
 * The dash: a Waveshare ESP32-S3-Touch-LCD-5 (800 x 480) running PhantomDash, powered from the car (6 to 36 V; a fused feed is advised).
 * A **microSD card** (FAT32). It holds the list of values the dash can read, your settings and your logs.
-* The **list of values** (names, units, formulas and addresses per ECU software version) for your car. It comes from Tycho (Simos.app) and is copied to the card as `master.tsv`. This project does not ship lists.
+* The **list of values** (names, units, formulas and addresses per ECU software version) for your car. It is already on the microSD card supplied with the dash, as `master.tsv`. The lists are not part of this repository.
 
 ## Supported cars
 
@@ -144,4 +144,4 @@ PhantomDash itself is released under the **MIT licence** (see [LICENSE](LICENSE)
 
 PhantomDash is built on open-source work, used under the licences named in [licenses/THIRD_PARTY.md](licenses/THIRD_PARTY.md) (full texts):
 LVGL (MIT), the QR code generator by Project Nayuki (MIT), stb_truetype, the Fira Sans font (SIL Open Font License 1.1), the DSEG seven-segment font (SIL Open Font License 1.1) and ESP-IDF (Apache 2.0 and others).
-The value lists and the Simos.app ecosystem are the work of Tycho; the dongle is built on the work of Brian Ledbetter and Switchleg1 (see the PhantomCAN README).
+The dongle is a separate product; its README lists its own credits.
