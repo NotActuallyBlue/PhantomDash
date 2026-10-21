@@ -53,7 +53,8 @@ Plainly, so you know what you are getting while this is in development:
 * **Tested in the desktop simulator:** the gauge screen, the welcome screen, the phone page with every action (through a real web server), the driving lockout.
 * **Tested on a small test board** (not the final screen) against the dongle: the encrypted radio link, live data, and a short drive in a Golf Mk7 where the engine computer accepted all 47 requested values with no lost frames. The values themselves were not recorded, so the scale of the list was not checked in that drive.
 * **Tested on the real screen board:** it starts, shows the gauges and the welcome screen, serves its own Wi-Fi network and the phone page, and **pairs with a dongle from the phone page** (the dongle was on the bench, not in a car).
-* **Not yet tested:** a car drive with the real board, the SD card and list on the board, the firmware update from a phone, recording on the board, radio range, the effect of the always-on Wi-Fi on the link to the dongle, and long drives.
+* **Tested in a car (20 Oct 2026, owner's 2017 Golf GTI, dongle in the OBD-II port, dash on a bench-style setup):** the dash recognised the engine computer and showed values the owner judged correct, with the real list. It felt a little slow on the screen (a fix is being measured). Not recorded: the values themselves were not compared against a second source, and the drive was short.
+* **Not yet tested:** a long car drive with the real board, the SD card and list on the board, the firmware update from a phone, recording on the board, radio range, the effect of the always-on Wi-Fi on the link to the dongle, and long drives.
 
 ## First start
 
