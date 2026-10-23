@@ -3,9 +3,8 @@
 An in-car digital dash for VAG cars. It shows live engine data from a [PhantomCAN](https://github.com/NotActuallyBlue/PhantomCAN) dongle on a 5-inch screen: big gauges and shift
 lights, nothing else. **You set it up from your phone**, once or twice, sitting back in the seat instead of reaching into the dash. No app to install: the dash serves its own web page.
 
-**Status: in development.** PhantomDash has not been released. It has been tested in a desktop simulator and against the dongle on a test board (including a short drive in a Golf Mk7),
-and the setup page has been used on the real screen board to pair with a dongle. It is **not yet finished or tested in a car on its final hardware**, so everything below describes what the software is built
-to do, not a finished product. Features and screens can still change.
+**Status: in development.** PhantomDash has not been released. It has been tested in a desktop simulator, on its screen board against the dongle, and in short car tests in a Golf Mk7.
+It has **not yet had a long drive or been tested on other cars**, so everything below describes what the software is built to do, not a finished product. Features and screens can still change.
 
 **Firmware downloads** will appear in this page's [Releases](../../releases) section: the update file (`phantomdash.bin`) and a checksum file. There is no release yet.
 
@@ -27,7 +26,7 @@ to do, not a finished product. Features and screens can still change.
 
 ## What you need
 
-* A **PhantomCAN dongle** in the car's OBD-II port, running DASH mode (see the dongle's README). The dash does not read the car itself.
+* A **PhantomCAN dongle** in the car's OBD-II port, in Simos mode, its normal mode (see the dongle's README). The dash does not read the car itself. While a phone app (Simos.app) is connected to the dongle, the dash shows **APP CONNECTED**; its values come back a few seconds after the app disconnects.
 * The dash: a 5-inch 800 x 480 ESP32-S3 display board from Waveshare running PhantomDash, powered from the car (6 to 36 V; a fused feed is advised).
 * A **microSD card** (FAT32). It holds the list of values the dash can read and your settings. It is already on the card supplied with the dash, as `master.tsv`. The lists are not part of this repository.
 * A **phone** with a browser (any phone).
@@ -39,10 +38,12 @@ PhantomDash reads what the engine computer answers to standard diagnostic reques
 | Engine computer | Software code the car reports | Status |
 |---|---|---|
 | Simos 18.1 / 18.6 | `SC8...` | **Tested** on one car: a 2017 Golf GTI (Mk7), in a short drive on a test board. Detection by the dongle's report of this code is built but not yet seen in the car. |
-| Simos 18.10 | `SCG...` | **Expected to use the same list as the Mk7; not tested.** If a value looks wrong, choose the list by hand on the GAUGES page. |
+| Simos 18.10 | `SCG...` | **Expected to use the same list as the Mk7; not tested.** If a value looks wrong, choose the list by hand under **Engine list** on the phone page. |
 | Simos 19 (Gen 4, Mk8 and newer) | `SCR...` and others | **Not supported yet.** The dash recognises that it is a different engine computer and leaves the list alone. Support depends on open lists for these cars becoming available. |
 
 Other engines and cars may work with the OBD-II list (the standard emissions-related values), but they are not tested.
+
+**Kinds of lists.** Mode 22 lists (the engine computer's standard identifiers) are what the dash uses by default and what has been checked in the car. HSL lists (the engine computer's high-speed logging, marked "(HSL)" in the list picker) need a tune with the HSL patch; the dongle supports them for the engine computer, but they have been tested on the bench only. If the engine computer refuses HSL, the phone page says so; choose a mode 22 list.
 
 
 ## What has been tested
@@ -52,8 +53,9 @@ Plainly, so you know what you are getting while this is in development:
 * **Tested in the desktop simulator:** the gauge screen, the welcome screen, the phone page with every action (through a real web server), the driving lockout.
 * **Tested on a small test board** (not the final screen) against the dongle: the encrypted radio link, live data, and a short drive in a Golf Mk7 where the engine computer accepted all 47 requested values with no lost frames. The values themselves were not recorded, so the scale of the list was not checked in that drive.
 * **Tested on the real screen board:** it starts, shows the gauges and the welcome screen, serves its own Wi-Fi network and the phone page, and **pairs with a dongle from the phone page** (the dongle was on the bench, not in a car).
-* **Tested in a car (20 Oct 2026, owner's 2017 Golf GTI, dongle in the OBD-II port, dash on a bench-style setup):** the dash recognised the engine computer and showed values the owner judged correct, with the real list. It felt a little slow on the screen (a fix is being measured). Not recorded: the values themselves were not compared against a second source, and the drive was short.
-* **Not yet tested:** a long car drive with the real board, the SD card and list on the board, the firmware update from a phone, radio range, the effect of the always-on Wi-Fi on the link to the dongle, and long drives.
+* **Tested in a car (20 Oct 2026, owner's 2017 Golf GTI, dongle in the OBD-II port, dash on a bench-style setup):** the dash recognised the engine computer and showed values the owner judged correct, with the real list. It felt a little slow on the screen; the screen code was made faster since (one screen update now takes about 3.9 ms on average, measured on the board).
+* **Tested in a car (23 Oct 2026):** with the dongle in Simos mode, the dash showed live values with no app connected, the dongle handed the car to Simos.app when it connected and the dash link came back after the app disconnected (dongle log). The owner checked the mode 22 values and found them accurate.
+* **Not yet tested:** a long drive, HSL lists in the car, the firmware update from a phone, radio range, other cars.
 
 ## First start
 
@@ -74,7 +76,7 @@ When the dash starts it shows a welcome screen with two QR codes:
 * **Gauges:** tap a gauge to choose what it shows from the list.
 * **Engine list:** automatic (the dash picks the list from the engine computer) or choose by hand.
 * **Theme, units, numbers:** six colour themes, imperial or metric, digital or italic numbers.
-* **Pairing:** hold **KEY** on the dongle for 2 seconds, tap **Start pairing**. Both screens show the same six digits: tap **Same code** on the page, then press **KEY** on the dongle. If they differ, tap **Different**.
+* **Pairing:** disconnect any phone app from the dongle, hold **BOOT** on the dongle until its screen says **PAIR DASH** (about 4 seconds) and let go, then tap **Start pairing**. Both screens show the same six digits: tap **Same code** on the page, then press **KEY** on the dongle. If they differ, tap **Different**.
 * **Clock:** it sets itself from your phone when you open the page; there is also a button.
 * **Update tab:** update the firmware.
 
@@ -100,6 +102,8 @@ Only the PhantomDash file is accepted; the dongle's file is refused with a messa
 | Problem | Try this |
 |---|---|
 | The gauges show `--` | The dongle is not connected or has no data. Check the link on the page; pair again if needed. |
+| The gauges show `--` and **APP CONNECTED** | A phone app (Simos.app) is connected to the dongle. The values come back a few seconds after the app disconnects. |
+| An HSL list shows nothing | The engine computer did not accept HSL (it needs a tune with the HSL patch), or the list is for the gearbox. Choose a mode 22 list. |
 | The page says "No list of values found" | The card has no `master.tsv`. Put the card in the dash and restart it. |
 | "Not while driving" | The car is moving faster than 10 mph; slow down or stop. |
 | The page does not open | Open `http://192.168.4.1/` in the browser, or use the network's **Manage router** link. |
@@ -109,7 +113,7 @@ Only the PhantomDash file is accepted; the dongle's file is refused with a messa
 ## Safety and legal
 
 PhantomDash shows what the engine computer reports. It is not a substitute for the car's own warning lights and gauges, and its warning limits are defaults, not
-manufacturer limits. Do not operate the touchscreen while driving. Use at your own risk; there is no warranty. The dash does not change anything in the car.
+manufacturer limits. Do not use the phone page while driving (it refuses changes above 10 mph). Use at your own risk; there is no warranty. The dash does not change anything in the car.
 It does not hide or alter any fault codes or emissions data.
 
 
