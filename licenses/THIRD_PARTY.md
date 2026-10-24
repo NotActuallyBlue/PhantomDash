@@ -10,9 +10,13 @@ every copy of the firmware or its source that is handed out (on the product's pa
 | stb_truetype (bundled in LVGL's tiny_ttf) | drawing the TrueType fonts | public domain / MIT |
 | [Fira Sans](https://github.com/mozilla/Fira) (Mozilla, Telefonica, Carrois Corporate, bBox Type) | all text, and the italic numbers | SIL Open Font License 1.1, `licenses/FiraSans-OFL.txt` |
 | [DSEG](https://github.com/keshikan/DSEG) 7-segment fonts by keshikan | the digital numbers | SIL Open Font License 1.1, `licenses/DSEG-OFL.txt` |
+| [Barlow](https://github.com/jpt/barlow) (Barlow Condensed SemiBold, Barlow Semi Condensed Medium) by The Barlow Project Authors | the Condensed numbers and the gauge labels | SIL Open Font License 1.1, `licenses/Barlow-OFL.txt` |
+| [Saira](https://github.com/Omnibus-Type/Saira) by The Saira Project Authors | the Wide numbers | SIL Open Font License 1.1, `licenses/Saira-OFL.txt` |
+| [Chakra Petch](https://github.com/m4rc1e/Chakra-Petch) by The Chakra Petch Project Authors | the Technical numbers | SIL Open Font License 1.1, `licenses/ChakraPetch-OFL.txt` |
+| [Inter](https://github.com/rsms/inter) by The Inter Project Authors | the Clean numbers | SIL Open Font License 1.1, `licenses/Inter-OFL.txt` |
 | [ESP-IDF](https://github.com/espressif/esp-idf) by Espressif Systems and the components it includes (FreeRTOS, lwIP, mbed TLS and others) | the firmware platform | mostly Apache 2.0, see [its licence page](https://github.com/espressif/esp-idf/blob/master/LICENSE) |
 
-The fonts are embedded in the firmware as data (`firmware/dash/src/font_*.c`, generated from the files in `firmware/dash/fonts/`). The OFL does not allow
+The fonts are embedded in the firmware as data (`firmware/dash/src/font_*.c`, generated from the files in `firmware/dash/fonts/`; the newer ones cut down to the characters a gauge needs by `tools/embed_fonts.py`). The OFL does not allow
 selling the fonts by themselves, and does allow bundling them with software; the licence texts above travel with them.
 
 ## LVGL
