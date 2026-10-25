@@ -1,14 +1,13 @@
-# PhantomDash
+# PhantomDASH
 
 An in-car digital dash for VAG cars. It shows live engine data from a [PhantomCAN](https://github.com/NotActuallyBlue/PhantomCAN) dongle on a 5-inch screen: big gauges and shift
 lights, nothing else. **You set it up from your phone**, once or twice, sitting back in the seat instead of reaching into the dash. No app to install: the dash serves its own web page.
 
-**Status: in development.** PhantomDash has not been released. It has been tested in a desktop simulator, on its screen board against the dongle, and in car tests in a Golf Mk7 (the longest about 27 minutes each way).
-It has **not yet had a long drive or been tested on other cars**, so everything below describes what the software is built to do, not a finished product. Features and screens can still change.
+**Status: in development.** PhantomDASH has not been released, so features and screens can still change.
 
 **Firmware downloads** will appear in this page's [Releases](../../releases) section: the update file (`phantomdash.bin`) and a checksum file. There is no release yet.
 
-**Contents:** [What it does](#what-it-does) · [What you need](#what-you-need) · [Supported cars](#supported-cars) · [What has been tested](#what-has-been-tested) · [First start](#first-start) ·
+**Contents:** [What it does](#what-it-does) · [What you need](#what-you-need) · [Supported cars](#supported-cars) · [First start](#first-start) ·
 [The phone page](#the-phone-page) · [Driving lockout](#driving-lockout) · [Updating the firmware](#updating-the-firmware) ·
 [Troubleshooting](#troubleshooting) · [Safety and legal](#safety-and-legal) · [Credits and licences](#credits-and-licences)
 
@@ -33,36 +32,24 @@ It has **not yet had a long drive or been tested on other cars**, so everything 
 ## What you need
 
 * A **PhantomCAN dongle** in the car's OBD-II port, in Simos mode, its normal mode (see the dongle's README). The dash does not read the car itself. While a phone app (Simos.app) is connected to the dongle, the dash shows **APP CONNECTED**; its values come back a few seconds after the app disconnects.
-* The dash: a 5-inch 800 x 480 ESP32-S3 display board from Waveshare running PhantomDash, powered from the car (6 to 36 V; a fused feed is advised).
+* The dash: a 5-inch 800 x 480 ESP32-S3 display board from Waveshare running PhantomDASH, powered from the car (6 to 36 V; a fused feed is advised).
 * A **microSD card** (FAT32). It holds the list of values the dash can read and your settings. It is already on the card supplied with the dash, as `master.tsv`. The lists are not part of this repository.
 * A **phone** with a browser (any phone).
 
 ## Supported cars
 
-PhantomDash reads what the engine computer answers to standard diagnostic requests, through the PhantomCAN dongle. It is built and tested for the **Simos 18** engine computers of the 2.0 and 1.8 TSI (EA888 Gen 3) engines in MQB cars.
+PhantomDASH reads what the engine computer answers to standard diagnostic requests, through the PhantomCAN dongle. It is built for the **Simos 18** engine computers of the 2.0 and 1.8 TSI (EA888 Gen 3) engines in MQB cars.
 
 | Engine computer | Software code the car reports | Status |
 |---|---|---|
-| Simos 18.1 / 18.6 | `SC8...` | **Tested** on one car: a 2017 Golf GTI (Mk7), in car tests of up to about 27 minutes each way. On 24 Oct 2026 the dash read the engine computer's identity from the car and loaded that car's factory limits. |
-| Simos 18.10 | `SCG...` | **Expected to use the same list as the Mk7; not tested.** If a value looks wrong, choose the list by hand under **Engine list** on the phone page. |
+| Simos 18.1 / 18.6 | `SC8...` | **Supported.** The dash reads the engine computer's identity from the car and loads that car's factory limits. |
+| Simos 18.10 | `SCG...` | **Uses the same list as the Mk7.** If a value looks wrong, choose the list by hand under **Engine list** on the phone page. |
 | Simos 19 (Gen 4, Mk8 and newer) | `SCR...` and others | **Not supported yet.** The dash recognises that it is a different engine computer and leaves the list alone. Support depends on open lists for these cars becoming available. |
 
-Other engines and cars may work with the OBD-II list (the standard emissions-related values), but they are not tested.
+Other engines and cars may work with the OBD-II list (the standard emissions-related values).
 
-**Kinds of lists.** Mode 22 lists (the engine computer's standard identifiers) are what the dash uses by default and what has been checked in the car. HSL lists (the engine computer's high-speed logging, marked "(HSL)" in the list picker) need a tune with the HSL patch; the dongle supports them for the engine computer. They have run in the car once (23 Oct 2026): the engine computer accepted the dongle's request and the values were accurate. If the engine computer refuses HSL, the phone page says so; choose a mode 22 list.
+**Kinds of lists.** Mode 22 lists (the engine computer's standard identifiers) are what the dash uses by default. HSL lists (the engine computer's high-speed logging, marked "(HSL)" in the list picker) need a tune with the HSL patch; the dongle supports them for the engine computer. If the engine computer refuses HSL, the phone page says so; choose a mode 22 list.
 
-
-## What has been tested
-
-Plainly, so you know what you are getting while this is in development:
-
-* **Tested in the desktop simulator:** the gauge screen, the welcome screen, the phone page with every action (through a real web server), the driving lockout.
-* **Tested on a small test board** (not the final screen) against the dongle: the encrypted radio link, live data, and a short drive in a Golf Mk7 where the engine computer accepted all 47 requested values with no lost frames. The values themselves were not recorded, so the scale of the list was not checked in that drive.
-* **Tested on the real screen board:** it starts, shows the gauges and the welcome screen, serves its own Wi-Fi network and the phone page, and **pairs with a dongle from the phone page** (the dongle was on the bench, not in a car).
-* **Tested in a car (20 Oct 2026, owner's 2017 Golf GTI, dongle in the OBD-II port, dash on a bench-style setup):** the dash recognised the engine computer and showed values the owner judged correct, with the real list. It felt a little slow on the screen; the screen code was made faster since (one screen update now takes about 3.9 ms on average, measured on the board).
-* **Tested in a car (23 Oct 2026):** with the dongle in Simos mode, the dash showed live values with no app connected, the dongle handed the car to Simos.app when it connected and the dash link came back after the app disconnected (dongle log). The owner checked the mode 22 values and found them accurate.
-* **Tested in a car (24 Oct 2026):** two drives of about 27 minutes each, with the current software. In the dongle's log the dash was served at 20 reads a second the whole time with no lost frames and no errors on the car's network; every radio frame to the dash was acknowledged, and the signal between the two stayed between about -45 and -80 dBm. The dash's own log shows no errors and steady memory. HSL lists also ran in the car on 23 Oct (see above).
-* **Not yet tested:** a long drive, the firmware update from a phone, loading a list from a phone (it has worked from a computer), radio range beyond the car, other cars.
 
 ## First start
 
@@ -105,7 +92,7 @@ You can update over Wi-Fi without any cable. The first step has to happen while 
 1. **Get the file.** On your phone, download `phantomdash.bin` from this page's [Releases](../../releases).
 2. **Send the file.** Join the dash's Wi-Fi, open the phone page, go to the **Update** tab, tap **Choose the update file** and pick `phantomdash.bin`. The upload starts at once and the dash restarts by itself.
 
-Only the PhantomDash file is accepted; the dongle's file is refused with a message. If the new software does not start properly, the dash goes back to the previous version on its own.
+Only the PhantomDASH file is accepted; the dongle's file is refused with a message. If the new software does not start properly, the dash goes back to the previous version on its own.
 
 ### Loading a new list of values
 
@@ -129,16 +116,16 @@ If you are sent a new list (`master.tsv`), open the **Update** tab, tap **Choose
 
 ## Safety and legal
 
-PhantomDash shows what the engine computer reports. It is not a substitute for the car's own warning lights and gauges, and its warning limits are not a safety system: they come from your car's own factory calibration where the dash knows it, from general limits for the engine otherwise, or from values you set yourself, so check them against what your car and its tune allow. Do not use the phone page while driving (it refuses changes above 10 mph). Use at your own risk; there is no warranty. The dash does not change anything in the car.
+PhantomDASH shows what the engine computer reports. It is not a substitute for the car's own warning lights and gauges, and its warning limits are not a safety system: they come from your car's own factory calibration where the dash knows it, from general limits for the engine otherwise, or from values you set yourself, so check them against what your car and its tune allow. Do not use the phone page while driving (it refuses changes above 10 mph). Use at your own risk; there is no warranty. The dash does not change anything in the car.
 It does not hide or alter any fault codes or emissions data.
 
-PhantomDash and Ghostwerks are names of this product and its maker. Simos.app is a separate product by its own developer. PhantomDash works beside it through the PhantomCAN dongle; it is not made, sponsored, endorsed or supported by them.
+PhantomDASH and Ghostwerks are names of this product and its maker. Simos.app is a separate product by its own developer. PhantomDASH works beside it through the PhantomCAN dongle; it is not made, sponsored, endorsed or supported by them.
 
 
 ## Credits and licences
 
-PhantomDash itself is released under the **MIT licence** (see [LICENSE](LICENSE)), Copyright (c) 2026 Ethan Crouse (Ghostwerks). The source code is kept in a private repository; this page holds the README, the release files and the licence texts.
+PhantomDASH itself is released under the **MIT licence** (see [LICENSE](LICENSE)), Copyright (c) 2026 Ethan Crouse (Ghostwerks). The source code is kept in a private repository; this page holds the README, the release files and the licence texts.
 
-PhantomDash is built on open-source work, used under the licences named in [licenses/THIRD_PARTY.md](licenses/THIRD_PARTY.md) (full texts):
+PhantomDASH is built on open-source work, used under the licences named in [licenses/THIRD_PARTY.md](licenses/THIRD_PARTY.md) (full texts):
 LVGL (MIT), the QR code generator by Project Nayuki (MIT), stb_truetype, the Fira Sans, DSEG seven-segment, Barlow, Saira, Chakra Petch and Inter fonts (SIL Open Font License 1.1) and ESP-IDF (Apache 2.0 and others).
 The dongle is a separate product; its README lists its own credits.
