@@ -78,7 +78,7 @@ When the dash starts it shows a welcome screen with two QR codes:
 * **Units, max values:** imperial or metric; clear the max values.
 * **Pairing:** disconnect any phone app from the dongle, hold **BOOT** on the dongle until its screen says **PAIR DASH** (about 4 seconds) and let go, then tap **Start pairing**. Both screens show the same six digits: tap **Same code** on the page, then press **KEY** on the dongle. If they differ, tap **Different**.
 * **Clock:** it sets itself from your phone when you open the page; there is also a button.
-* **Update tab:** update the firmware, or load a new list of values.
+* **Update tab:** update the firmware, load a new list of values, or download the dash's log to send with a problem.
 
 ![Pairing on the phone page](img/phone_pair.png)
 
@@ -101,6 +101,16 @@ Only the PhantomDASH file is accepted; the dongle's file is refused with a messa
 
 The list of values the dash can read comes already loaded. If you are sent a new list file (`.pdv`), open the **Update** tab, tap **Choose the list file** and pick it. The dash checks it, keeps the old list until the new one is stored, and restarts with the new one. A file that is not a PhantomDASH list changes nothing.
 
+## Sending a log
+
+If something did not work, the dash's log shows what happened. It keeps its last 12 starts.
+
+1. Join the dash's Wi-Fi, open the phone page and go to the **Update** tab.
+2. Under **SOMETHING WRONG?**, tap **Download log**. The phone saves `phantomdash-log-` with the date, for example `phantomdash-log-2026-10-27.txt`.
+3. Open a new issue under this page's **Issues** tab, attach the file and say what you did, what happened and roughly when. The Wi-Fi password in the log is replaced by stars.
+
+If the problem may be the dongle's side, send its log too (see the PhantomCAN dongle's instructions, "Sending a log").
+
 ## Troubleshooting
 
 | Problem | Try this |
@@ -113,7 +123,7 @@ The list of values the dash can read comes already loaded. If you are sent a new
 | The night brightness never changes | It needs the dash's clock. The clock sets itself from your phone when you open the page, but it keeps the time with the power off only if a coin cell (CR927) sits in the board's battery holder. |
 | The page says "No list of values loaded" | Load the list file (`.pdv`) you were sent under **Update**, LIST OF VALUES. |
 | "Not while driving" | The car is moving faster than 10 mph; slow down or stop. |
-| The page does not open | Open `http://192.168.4.1/` in the browser, or use the network's **Manage router** link. |
+| The page does not open | Turn off mobile data while you are on the dash's Wi-Fi, then type `http://192.168.4.1/` in full (with `http://`, not `https://`), or use the network's **Manage router** link. |
 | Pairing times out | Both sides need your confirmation within 45 seconds: **Same code** on the page, then **KEY** on the dongle. |
 | The update page does not open a file picker | Open `http://192.168.4.1/` in your phone's normal browser instead of the pop-up sign-in window. |
 
