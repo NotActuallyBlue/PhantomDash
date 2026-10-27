@@ -15,12 +15,15 @@ lights, nothing else. **You set it up from your phone**, once or twice, sitting 
 
 ## What it does
 
-![The dash: four gauges and the shift lights](img/gauges.png)
+![The dash at night: four gauges and the shift lights](img/gauges.png)
+
+![The same gauges in a day theme: white backdrop, black numbers](img/gauges_day.png)
 
 * **Four or six big gauges, or one big and three small** (by default boost, oil temperature, knock and coolant temperature, then intake air temperature and battery voltage). You choose what each gauge shows from your phone.
 * **Gear indicator** (optional): the gear between the gauges, N when no forward gear is engaged.
 * **Start-up sweep:** at power-on the shift lights and scales sweep once, like an instrument cluster.
-* **Your look:** eight colour themes, six number fonts (digital, italic, condensed, wide, technical, clean), gauges on cards or a minimal layout with thin lines between them, numbers in a gradient or a solid colour, a thin scale under each number (warning zones marked, the max value as a tick), and shift lights in green-to-red or the theme's colours.
+* **Day and night themes:** a light theme with a white backdrop and black numbers for the day (easiest to read in direct sun), a dark theme for the night, switched automatically at the night hours (the same schedule as the brightness). Three day themes and seven night themes; or keep one theme at any time of day.
+* **Your look:** six number fonts (digital, italic, condensed, wide, technical, clean), gauges on cards or a minimal layout with thin lines between them, numbers in a gradient or a solid colour, a thin scale under each number (warning zones marked, the max value as a tick), and shift lights in green-to-red or the theme's colours.
 * **Shift lights:** a bar of 16 lights across the top that fills from green to red over the whole rev range, from 1,500 rpm (idle shows nothing) to 6,000 rpm, where the tachometer's red zone starts and the whole bar flashes red.
 * **Warning colours:** a gauge turns yellow, then red. Stock limits come from your own car's factory calibration where the dash knows it (turbo speed, boost and manifold pressure, fuel pump, compressor temperature: yellow where the engine computer starts protecting itself, red at its hard limit), and from limits for the EA888 Gen 3 otherwise (for example coolant 110 / 116 °C, 230 / 241 °F; oil 125 / 135 °C, 257 / 275 °F). If your car is tuned, set your tune's values on the phone page; one tap goes back to stock. A gauge in the red also flashes its frame, so it catches your eye when you are not looking at it.
 * **Max values:** each gauge shows the highest value since the dash started (the lowest for knock). Clear them from the phone page.
@@ -68,7 +71,8 @@ When the dash starts it shows a welcome screen with two QR codes:
 * **Status:** the engine computer the dongle found, the list in use, the dongle link.
 * **Gauges:** tap a gauge to choose what it shows from the list.
 * **Engine list:** automatic (the dash picks the list from the engine computer) or choose by hand.
-* **Look:** eight colour themes; four gauges, six, or one big with three small; gauges on cards or a minimal layout; six number fonts; numbers in a gradient or one colour; the scale under each number on or off; shift lights in green to red or in the theme's colours; the gear indicator; the start-up sweep.
+* **Theme:** automatic day and night (choose a day theme and a night theme), or one theme always.
+* **Look:** four gauges, six, or one big with three small; gauges on cards or a minimal layout; six number fonts; numbers in a gradient or one colour; the scale under each number on or off; shift lights in green to red or in the theme's colours; the gear indicator; the start-up sweep.
 * **Warning limits:** for each gauge shown, the stock yellow and red limits and where they come from, and fields to set your own if your car is tuned (**Stock** goes back).
 * **Screen brightness:** a day and a night level, and the night hours.
 * **Units, max values:** imperial or metric; clear the max values.
