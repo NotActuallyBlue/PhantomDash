@@ -25,7 +25,7 @@ lights, nothing else. **You set it up from your phone**, once or twice, sitting 
 * **Warning colours:** a gauge turns yellow, then red. Stock limits come from your own car's factory calibration where the dash knows it (turbo speed, boost and manifold pressure, fuel pump, compressor temperature: yellow where the engine computer starts protecting itself, red at its hard limit), and from limits for the EA888 Gen 3 otherwise (for example coolant 110 / 116 °C, 230 / 241 °F; oil 125 / 135 °C, 257 / 275 °F). If your car is tuned, set your tune's values on the phone page; one tap goes back to stock. A gauge in the red also flashes its frame, so it catches your eye when you are not looking at it.
 * **Max values:** each gauge shows the highest value since the dash started (the lowest for knock). Clear them from the phone page.
 * **Brightness:** a day and a night level, set from the phone page; the night level follows the dash's clock. The screen also says why the gauges are empty: NO DONGLE, CAR OFF or APP CONNECTED.
-* **Set up from your phone:** pair the dongle, choose the gauges, theme, units, the engine list, the clock, update the firmware, and load a new list of values if you are sent one (no card reader needed). The dash is a live view; it does not record (the dongle is where logging happens).
+* **Set up from your phone:** pair the dongle, choose the gauges, theme, units, the engine list, the clock, update the firmware, and load a new list of values if you are sent one (no computer needed). The dash is a live view; it does not record (the dongle is where logging happens).
 * **ECU detection:** the dash reads which engine computer the car has (through the dongle) and picks the matching list of values by itself. You can still choose by hand.
 * **Pure gauge view while driving:** above 10 mph the phone page refuses changes, so nobody fiddles with it on the move.
 
@@ -33,7 +33,6 @@ lights, nothing else. **You set it up from your phone**, once or twice, sitting 
 
 * A **PhantomCAN dongle** in the car's OBD-II port, in Simos mode, its normal mode (see the dongle's README). The dash does not read the car itself. While a phone app (Simos.app) is connected to the dongle, the dash shows **APP CONNECTED**; its values come back a few seconds after the app disconnects.
 * The dash: a 5-inch 800 x 480 ESP32-S3 display board from Waveshare running PhantomDASH, powered from the car (6 to 36 V; a fused feed is advised).
-* A **microSD card** (FAT32). It holds the list of values the dash can read and your settings. It is already on the card supplied with the dash, as `master.tsv`. The lists are not part of this repository.
 * A **phone** with a browser (any phone).
 
 ## Supported cars
@@ -96,7 +95,7 @@ Only the PhantomDASH file is accepted; the dongle's file is refused with a messa
 
 ### Loading a new list of values
 
-If you are sent a new list (`master.tsv`), open the **Update** tab, tap **Choose the list file** and pick it. The dash checks that it is a list, keeps the old one as a backup (`master.bak` on the card), and restarts with the new one. A file that is not a list changes nothing. This saves taking the card out.
+The list of values the dash can read comes already loaded. If you are sent a new list file (`.pdv`), open the **Update** tab, tap **Choose the list file** and pick it. The dash checks it, keeps the old list until the new one is stored, and restarts with the new one. A file that is not a PhantomDASH list changes nothing.
 
 ## Troubleshooting
 
@@ -108,7 +107,7 @@ If you are sent a new list (`master.tsv`), open the **Update** tab, tap **Choose
 | The gauges show `--` and **APP CONNECTED** | A phone app (Simos.app) is connected to the dongle. The values come back a few seconds after the app disconnects. |
 | An HSL list shows nothing | The engine computer did not accept HSL (it needs a tune with the HSL patch), or the list is for the gearbox. Choose a mode 22 list. |
 | The night brightness never changes | It needs the dash's clock. The clock sets itself from your phone when you open the page, but it keeps the time with the power off only if a coin cell (CR927) sits in the board's battery holder. |
-| The page says "No list of values found" | The card has no `master.tsv`. Put the card in the dash and restart it. |
+| The page says "No list of values loaded" | Load the list file (`.pdv`) you were sent under **Update**, LIST OF VALUES. |
 | "Not while driving" | The car is moving faster than 10 mph; slow down or stop. |
 | The page does not open | Open `http://192.168.4.1/` in the browser, or use the network's **Manage router** link. |
 | Pairing times out | Both sides need your confirmation within 45 seconds: **Same code** on the page, then **KEY** on the dongle. |
