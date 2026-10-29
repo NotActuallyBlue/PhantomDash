@@ -19,8 +19,7 @@ lights, nothing else. **You set it up from your phone**, once or twice, sitting 
 
 ![The same gauges in a day theme: white backdrop, black numbers](img/gauges_day.png)
 
-* **Three layouts: Quad (four big gauges), Grid (six) and Focus (one large and three small)** (by default boost, oil temperature, knock and coolant temperature, then intake air temperature and battery voltage). You choose what each gauge shows from your phone.
-* **Gear indicator** (optional): the gear between the gauges, N when no forward gear is engaged.
+* **Three layouts: Quad (four big gauges), Grid (six) and Focus (one large and three small)** (by default boost, oil temperature, knock and coolant temperature, then intake air temperature and battery voltage). You choose what each gauge shows from your phone, and each number is sized automatically to fill its gauge.
 * **Start-up sweep:** at power-on the shift lights and scales sweep once, like an instrument cluster.
 * **Day and night themes:** a light theme with a white backdrop and black numbers for the day (easiest to read in direct sun), a dark theme for the night, switched automatically at the night hours (the same schedule as the brightness). Three day themes and seven night themes; or keep one theme at any time of day.
 * **Your look:** six number fonts (digital, italic, condensed, wide, technical, clean), gauges on cards or in the open style with thin lines between them, numbers in a gradient or a solid colour, a thin scale under each number (warning zones marked, the max value as a tick), and shift lights in green-to-red or the theme's colours.
@@ -66,7 +65,7 @@ When the dash starts it shows a welcome screen with two QR codes:
 
 ## The phone page
 
-It looks and works like your phone's own settings: grouped lists, switches and sliders, in light or dark to match your phone.
+It looks and works like your phone's own settings: grouped lists, switches and sliders, and its text follows the text size set on your phone. Under **Page appearance** choose Light, Dark or Automatic (follows your phone); the choice is kept on that phone.
 
 ![The setup page on a phone](img/phone_setup.png)
 
@@ -74,7 +73,7 @@ It looks and works like your phone's own settings: grouped lists, switches and s
 * **Gauges:** tap a gauge to choose what it shows from the list.
 * **Engine list:** automatic (the dash picks the list from the engine computer) or choose by hand.
 * **Theme:** automatic day and night (choose a day theme and a night theme), or one theme always.
-* **Layout:** Quad, Grid or Focus; gauges on Cards or Open (thin lines between them). **Numbers and details:** six number fonts; numbers in a gradient or one colour; the scale under each number on or off; shift lights in green to red or in the theme's colours; the gear indicator; the start-up sweep.
+* **Layout:** Quad, Grid or Focus; gauges on Cards or Open (thin lines between them). **Numbers and details:** six number fonts; numbers in a gradient or one colour; the scale under each number on or off; shift lights in green to red or in the theme's colours; the start-up sweep.
 * **Warning limits:** for each gauge shown, the stock yellow and red limits and where they come from, and fields to set your own if your car is tuned (**Stock** goes back).
 * **Screen brightness:** a day and a night level, and the night hours.
 * **Units, max values:** imperial or metric; clear the max values.
