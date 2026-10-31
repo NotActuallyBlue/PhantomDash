@@ -15,25 +15,29 @@ lights, nothing else. **You set it up from your phone**, once or twice, sitting 
 
 ## What it does
 
-![The dash at night: four gauges and the shift lights](img/gauges.png)
+![The dash at night (Pure Dark): four gauges and the shift lights](img/gauges.png)
 
-![The same gauges in a day theme: white backdrop, black numbers](img/gauges_day.png)
+![The same gauges in a day theme (Pure Light): light backdrop, black numbers](img/gauges_day.png)
 
 * **Three layouts: Quad (four big gauges), Grid (six) and Focus (one large and three small)** (by default boost, oil temperature, knock and coolant temperature, then intake air temperature and battery voltage). You choose what each gauge shows from your phone, and each number is sized automatically to fill its gauge.
-* **Start-up sweep:** at power-on the shift lights and scales sweep once, like an instrument cluster.
-* **Day and night themes:** a light theme with a white backdrop and black numbers for the day (easiest to read in direct sun), a dark theme for the night, switched automatically at the night hours (the same schedule as the brightness). Three day themes and seven night themes; or keep one theme at any time of day.
-* **Your look:** six number fonts (digital, italic, condensed, wide, technical, clean), gauges on cards or in the open style with thin lines between them, numbers in a gradient or a solid colour, a thin scale under each number (warning zones marked, the max value as a tick), and shift lights in green-to-red or the theme's colours.
+* **Start-up sweep:** at power-on a tachometer sweeps to 8,000 rpm and back, then the gauges appear and the shift lights and scales sweep once, like an instrument cluster (the second sweep can be switched off).
+* **Day and night themes:** eight themes, four light ones for the day (Pure Light, Honey, Aero Slate, Parchment; dark numbers on a light backdrop, easiest to read in direct sun) and four dark ones for the night (Pure Dark, Fjord, Nocturne, Aviation Amber). The dash switches between your day and night theme automatically at the night hours (the same schedule as the brightness), and picks the right one before the first frame at power-on. Or keep one theme at any time of day. Each theme has its own number colour.
+* **Your look:** six number fonts (digital, italic, condensed, wide, technical, clean), gauges on cards or in the open style with thin lines between them, a thin scale under each number (warning zones marked, the max value as a tick), and shift lights in green-to-red or the theme's colours.
 * **Shift lights:** a bar of 16 lights across the top that fills from green to red over the whole rev range, from 1,500 rpm (idle shows nothing) to 6,000 rpm, where the tachometer's red zone starts and the whole bar flashes red.
 * **Warning colours:** a gauge turns yellow, then red. Stock limits come from your own car's factory calibration where the dash knows it (turbo speed, boost and manifold pressure, fuel pump, compressor temperature: yellow where the engine computer starts protecting itself, red at its hard limit), and from limits for the EA888 Gen 3 otherwise (for example coolant 110 / 116 °C, 230 / 241 °F; oil 125 / 135 °C, 257 / 275 °F). If your car is tuned, set your tune's values on the phone page; one tap goes back to stock. A gauge in the red also flashes its frame, so it catches your eye when you are not looking at it.
 * **Max values:** each gauge shows the highest value since the dash started (the lowest for knock). Clear them from the phone page.
-* **Brightness:** a day and a night level, set from the phone page; the night level follows the dash's clock. The screen also says why the gauges are empty: NO DONGLE, CAR OFF, NO DATA or APP CONNECTED.
-* **Set up from your phone:** pair the dongle, choose the gauges, theme, units, the engine list, the clock, update the firmware, and load a new list of values if you are sent one (no computer needed). The dash is a live view; it does not record (the dongle is where logging happens).
+* **Brightness:** a day and a night level, set from the phone page; the night level follows the dash's clock. The screen also says why the gauges are empty: NO DONGLE, CAR OFF or NO DATA.
+* **While a phone app has the car:** when Simos.app connects to the dongle, the dash shows an idle screen with the logo, the time and **DONGLE ACTIVE · APP CONNECTED**, and goes back to the gauges a few seconds after the app disconnects.
+
+  ![The idle screen while Simos.app has the car](img/app_connected.png)
+
+* **Set up from your phone:** pair the dongle, choose the gauges, theme, units, the engine list, the clock, update the firmware, and load a new list of values if you are sent one (no computer needed). The dash is a live view; it does not record (logging is done in Simos.app).
 * **ECU detection:** the dash reads which engine computer the car has (through the dongle) and picks the matching list of values by itself. You can still choose by hand.
 * **Pure gauge view while driving:** above 10 mph the phone page refuses changes, so nobody fiddles with it on the move.
 
 ## What you need
 
-* A **PhantomCAN dongle** in the car's OBD-II port, in Simos mode, its normal mode (see the dongle's README). The dash does not read the car itself. While a phone app (Simos.app) is connected to the dongle, the dash shows **APP CONNECTED**; its values come back a few seconds after the app disconnects.
+* A **PhantomCAN dongle** in the car's OBD-II port, in Simos mode, its normal mode (see the dongle's README). The dash does not read the car itself. While a phone app (Simos.app) is connected to the dongle, the dash shows its idle screen (**APP CONNECTED**); the gauges come back a few seconds after the app disconnects.
 * The dash: a 5-inch 800 x 480 ESP32-S3 display board from Waveshare running PhantomDASH, powered from the car (6 to 36 V; a fused feed is advised).
 * A **phone** with a browser (any phone).
 
@@ -73,7 +77,7 @@ It looks and works like your phone's own settings: grouped lists, switches and s
 * **Gauges:** tap a gauge to choose what it shows from the list.
 * **Engine list:** automatic (the dash picks the list from the engine computer) or choose by hand.
 * **Theme:** automatic day and night (choose a day theme and a night theme), or one theme always.
-* **Layout:** Quad, Grid or Focus; gauges on Cards or Open (thin lines between them). **Numbers and details:** six number fonts; numbers in a gradient or one colour; the scale under each number on or off; shift lights in green to red or in the theme's colours; the start-up sweep.
+* **Layout:** Quad, Grid or Focus; gauges on Cards or Open (thin lines between them). **Numbers and details:** six number fonts; the scale under each number on or off; shift lights in green to red or in the theme's colours; the start-up sweep.
 * **Warning limits:** for each gauge shown, the stock yellow and red limits and where they come from, and fields to set your own if your car is tuned (**Stock** goes back).
 * **Screen brightness:** a day and a night level, and the night hours.
 * **Units, max values:** imperial or metric; clear the max values.
@@ -120,7 +124,7 @@ If the problem may be the dongle's side, send its log too (see the PhantomCAN do
 | The gauges show `--` and **CAR OFF** | The dongle hears nothing on the car's network (ignition off). The values come back when the car wakes. |
 | The gauges show `--` and **NO DATA** | The dongle is linked, but no values have come for a few seconds: the car is not answering it. If it stays, turn the ignition off and on, or unplug the dongle and plug it back in, and send both logs (see [Sending a log](#sending-a-log)). |
 | The gauges show `--` | The dongle is connected but the car has not answered yet, or the value is not offered by the list in use. |
-| The gauges show `--` and **APP CONNECTED** | A phone app (Simos.app) is connected to the dongle. The values come back a few seconds after the app disconnects. |
+| The idle screen (logo and **APP CONNECTED**) stays | A phone app (Simos.app) is still connected to the dongle, perhaps in the background on your phone: close it. The gauges come back a few seconds after it disconnects. If the dongle lost power during the app session, the dash shows **NO DONGLE** after an hour, or at once when the ignition is turned off and on. |
 | An HSL list shows nothing | The engine computer did not accept HSL (it needs a tune with the HSL patch), or the list is for the gearbox. Choose a mode 22 list. |
 | The night brightness never changes | It needs the dash's clock. The clock sets itself from your phone when you open the page, but it keeps the time with the power off only if a coin cell (CR927) sits in the board's battery holder. |
 | The page says "No list of values loaded" | Load the list file (`.pdv`) you were sent under **Update**, LIST OF VALUES. |
