@@ -17,12 +17,12 @@ lights, nothing else. **You set it up from your phone**, once or twice, sitting 
 
 ![The dash at night (Pure Dark): four gauges and the shift lights](img/gauges.png)
 
-![The same gauges in a day theme (Pure Light): light backdrop, black numbers](img/gauges_day.png)
+![The same gauges in a day theme (High Noon): light backdrop, black numbers, the oil temperature in its yellow warning](img/gauges_day.png)
 
 * **Three layouts: Quad (four big gauges), Grid (six) and Focus (one large and three small)** (by default boost, oil temperature, knock and coolant temperature, then intake air temperature and battery voltage). You choose what each gauge shows from your phone, and each number is sized automatically to fill its gauge.
 * **Start-up sweep:** at power-on a tachometer sweeps to 8,000 rpm and back, then the gauges appear and the shift lights and scales sweep once, like an instrument cluster (the second sweep can be switched off).
-* **Day and night themes:** ten themes, five light ones for the day (Pure Light, Honey, Aero Slate, Concrete, Parchment; dark numbers on a light backdrop, easiest to read in direct sun) and five dark ones for the night (Pure Dark, Fjord, Nocturne, Aviation Amber, Phosphor). The dash switches between your day and night theme automatically at the night hours (the same schedule as the brightness), and picks the right one before the first frame at power-on. Or keep one theme at any time of day. Each theme has its own number colour.
-* **Your look:** six number fonts (digital, italic, condensed, wide, technical, clean), gauges on cards or in the open style with thin lines between them, a thin scale under each number (warning zones marked, the max value as a tick), and shift lights in green-to-red or the theme's colours.
+* **Day and night themes:** eleven themes. Five light ones for the day, named after the time of day (Daybreak, High Noon, Afternoon, Golden Hour, and the soft Pastel Day; dark numbers on a light backdrop, easiest to read in direct sun) and six dark ones for the night (Pure Dark, Fjord, Nocturne, Aviation Amber, Phosphor, Pastel Night). Each has its own number colour, and the numbers have a soft glow at night and a light shadow by day. The two pastel themes also have rounder shapes. The dash switches between your day and night theme automatically at the night hours (the same schedule as the brightness), and picks the right one before the first frame at power-on. Or keep one theme at any time of day.
+* **Your look:** seven number fonts (clean, digital, italic, condensed, wide, technical, rounded), gauges in the open style with thin lines between them or on cards, a thin scale under each number in the theme's colour (warning zones marked, the max value as a tick), and shift lights in green-to-red or the theme's colours.
 * **Shift lights:** a bar of 16 lights across the top that fills from green to red over the whole rev range, from 1,500 rpm (idle shows nothing) to 6,000 rpm, where the tachometer's red zone starts and the whole bar flashes red.
 * **Warning colours:** a gauge turns yellow, then red. Stock limits come from your own car's factory calibration where the dash knows it (turbo speed, boost and manifold pressure, fuel pump, compressor temperature: yellow where the engine computer starts protecting itself, red at its hard limit), and from limits for the EA888 Gen 3 otherwise (for example coolant 110 / 116 °C, 230 / 241 °F; oil 125 / 135 °C, 257 / 275 °F). If your car is tuned, set your tune's values on the phone page; one tap goes back to stock. A gauge in the red also flashes its frame, so it catches your eye when you are not looking at it.
 * **Max values:** each gauge shows the highest value since the dash started (the lowest for knock). Clear them from the phone page.
@@ -69,21 +69,26 @@ When the dash starts it shows a welcome screen with two QR codes:
 
 ## The phone page
 
-It looks and works like your phone's own settings: grouped lists, switches and sliders, and its text follows the text size set on your phone. Under **Page appearance** choose Light, Dark or Automatic (follows your phone); the choice is kept on that phone.
+It looks and works like your phone's own settings: grouped lists, switches and sliders in four tabs (**Gauges**, **Look**, **Dash** and **Update**), and its text follows the text size set on your phone. The first time you open it, it reminds you to save it to your Home Screen or as a bookmark (**Show Me How!** walks you through it). Under **Page appearance** choose Light, Dark or Automatic (follows your phone); the choice is kept on that phone.
 
 ![The setup page on a phone](img/phone_setup.png)
 
-* **Status:** the engine computer the dongle found, the list in use, the dongle link.
-* **Gauges:** tap a gauge to choose what it shows from the list.
-* **Engine list:** automatic (the dash picks the list from the engine computer) or choose by hand.
-* **Theme:** automatic day and night (choose a day theme and a night theme), or one theme always.
-* **Layout:** Quad, Grid or Focus; gauges on Cards or Open (thin lines between them). **Numbers and details:** six number fonts; the scale under each number on or off; shift lights in green to red or in the theme's colours; the start-up sweep.
-* **Warning limits:** for each gauge shown, the stock yellow and red limits and where they come from, and fields to set your own if your car is tuned (**Stock** goes back).
-* **Screen brightness:** a day and a night level, and the night hours.
-* **Units, max values:** imperial or metric; clear the max values.
-* **Pairing:** disconnect any phone app from the dongle, hold **BOOT** on the dongle until its screen says **PAIR DASH** (about 4 seconds) and let go, then tap **Start pairing**. Both screens show the same six digits: tap **Same code** on the page, then press **KEY** on the dongle. If they differ, tap **Different**.
-* **Clock:** it sets itself from your phone when you open the page; there is also a button.
-* **Update tab:** update the firmware, load a new list of values, or download the dash's log to send with a problem.
+* **Gauges tab**
+  * **Status:** the engine computer the dongle found, the list in use, the dongle link.
+  * **Gauges:** tap a gauge to choose what it shows from the list; clear the max values.
+  * **Warning limits:** for each gauge shown, the stock yellow and red limits and where they come from, and fields to set your own if your car is tuned (**Stock** goes back).
+  * **Engine list:** automatic (the dash picks the list from the engine computer) or choose by hand.
+* **Look tab**
+  * **Theme:** automatic day and night (choose a day theme and a night theme), or one theme always.
+  * **Layout:** Quad, Grid or Focus; Open (thin lines between the gauges) or Cards.
+  * **Numbers and details:** seven number fonts; the scale under each number on or off; shift lights in green to red or in the theme's colours; the start-up sweep.
+  * **Brightness:** a day and a night level, and the night hours.
+* **Dash tab**
+  * **Units:** imperial or metric.
+  * **Pairing:** disconnect any phone app from the dongle, hold **BOOT** on the dongle until its screen says **PAIR DASH** (about 4 seconds) and let go, then tap **Pair with the dongle**. Both screens show the same six digits: tap **Same code** on the page, then press **KEY** on the dongle. If they differ, tap **Different**.
+  * **Clock:** it sets itself from your phone when you open the page; there is also a button.
+  * **Phone and Wi-Fi:** the dash's network and password, how to add the page to your Home Screen, and a QR code on the dash for another phone.
+* **Update tab:** check for a new firmware, update it, load a new list of values, or download the dash's log to send with a problem.
 
 ![Pairing on the phone page](img/phone_pair.png)
 
@@ -97,7 +102,7 @@ Above 10 mph the page refuses changes ("Not while driving"); only the clock is a
 
 You can update over Wi-Fi without any cable. The first step has to happen while your phone still has internet, because the dash's own network has none.
 
-1. **Get the file.** On your phone, download `phantomdash.bin` from this page's [Releases](../../releases).
+1. **Get the file.** On the phone page's **Update** tab, tap **Check for updates**: it says whether your dash already runs the newest firmware and, if not, gives you a link to download `phantomdash.bin`. This needs internet on your phone (turn on mobile data while you are on the dash's Wi-Fi). You can also download the file from this page's [Releases](../../releases).
 2. **Send the file.** Join the dash's Wi-Fi, open the phone page, go to the **Update** tab, tap **Choose the update file** and pick `phantomdash.bin`. The upload starts at once and the dash restarts by itself.
 
 Only the PhantomDASH file is accepted; the dongle's file is refused with a message. If the new software does not start properly, the dash goes back to the previous version on its own.

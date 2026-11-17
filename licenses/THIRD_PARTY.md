@@ -14,6 +14,7 @@ every copy of the firmware or its source that is handed out (on the product's pa
 | [Saira](https://github.com/Omnibus-Type/Saira) by The Saira Project Authors | the Wide numbers | SIL Open Font License 1.1, `licenses/Saira-OFL.txt` |
 | [Chakra Petch](https://github.com/m4rc1e/Chakra-Petch) by The Chakra Petch Project Authors | the Technical numbers | SIL Open Font License 1.1, `licenses/ChakraPetch-OFL.txt` |
 | [Inter](https://github.com/rsms/inter) by The Inter Project Authors | the Clean numbers | SIL Open Font License 1.1, `licenses/Inter-OFL.txt` |
+| [Fredoka](https://github.com/hafontia/Fredoka-One) by The Fredoka Project Authors | the Rounded numbers | SIL Open Font License 1.1, `licenses/Fredoka-OFL.txt` |
 | [ESP-IDF](https://github.com/espressif/esp-idf) by Espressif Systems and the components it includes (FreeRTOS, lwIP, mbed TLS and others) | the firmware platform | mostly Apache 2.0, see [its licence page](https://github.com/espressif/esp-idf/blob/master/LICENSE) |
 
 The fonts are embedded in the firmware as data (`firmware/dash/src/font_*.c`, generated from the files in `firmware/dash/fonts/`; the newer ones cut down to the characters a gauge needs by `tools/embed_fonts.py`). The OFL does not allow
