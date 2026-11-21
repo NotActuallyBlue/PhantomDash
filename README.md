@@ -49,7 +49,7 @@ PhantomDASH reads what the engine computer answers to standard diagnostic reques
 |---|---|---|
 | Simos 18.1 / 18.6 | `SC8...` | **Supported.** The dash reads the engine computer's identity from the car and loads that car's factory limits. |
 | Simos 18.10 | `SCG...` | **Uses the same list as the Mk7.** If a value looks wrong, choose the list by hand under **Engine list** on the phone page. |
-| Simos 19 (Gen 4, Mk8 and newer) | `SCR...` and others | **Logging supported** with the Mk8 list: choose **ECU MK8 (mode 22)** under **Engine list** on the phone page (the dash does not pick it by itself for these cars). Flashing them is not supported yet. |
+| Simos 19 (Gen 4, Mk8 and newer) | `SCR...` and others | **Logging supported.** The dash reads the engine computer's identity and loads the Mk8 list by itself. Flashing these cars is not supported yet. |
 
 Other engines and cars may work with the OBD-II list (the standard emissions-related values).
 
