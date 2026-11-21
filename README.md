@@ -38,7 +38,7 @@ lights, nothing else. **You set it up from your phone**, once or twice, sitting 
 ## What you need
 
 * A **PhantomCAN dongle** in the car's OBD-II port, in Simos mode, its normal mode (see the dongle's README). The dash does not read the car itself. While a phone app (Simos.app) is connected to the dongle, the dash shows its idle screen (**APP CONNECTED**); the gauges come back a few seconds after the app disconnects.
-* The dash: a 5-inch 800 x 480 ESP32-S3 display board from Waveshare running PhantomDASH, powered from the car (6 to 36 V; a fused feed is advised).
+* The dash: a 5-inch 800 x 480 ESP32-S3 display board from Waveshare running PhantomDASH, powered over USB Type-C.
 * A **phone** with a browser (any phone).
 
 ## Supported cars
