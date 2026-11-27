@@ -24,7 +24,7 @@ lights, nothing else. **You set it up from your phone**, once or twice, sitting 
 * **Day and night themes:** eleven themes. Five light ones for the day, named after the time of day (Daybreak, High Noon, Afternoon, Golden Hour, and the soft Pastel Day; dark numbers on a light backdrop, easiest to read in direct sun) and six dark ones for the night (Pure Dark, Indigo, Magma, Aviation Amber, Phosphor, Pastel Night). Each has its own number colour, and the numbers have a soft glow at night and a light shadow by day. The two pastel themes also have rounder shapes. The dash switches between your day and night theme automatically at the night hours (the same schedule as the brightness), and picks the right one before the first frame at power-on. Or keep one theme at any time of day.
 * **Your look:** seven number fonts (clean, digital, italic, condensed, wide, technical, rounded), gauges in the open style with thin lines between them or on cards, a thin scale under each number in the theme's colour (warning zones marked, the max value as a tick), and shift lights in green-to-red or the theme's colours.
 * **Shift lights:** a bar of 16 lights across the top that fills from green to red over the whole rev range, from 1,500 rpm (idle shows nothing) to 6,000 rpm, where the tachometer's red zone starts and the whole bar flashes red.
-* **Warning colours:** a gauge turns yellow, then red. Stock limits come from your own car's factory calibration where the dash knows it (turbo speed, boost and manifold pressure, fuel pump, compressor temperature: yellow where the engine computer starts protecting itself, red at its hard limit), and from limits for the EA888 Gen 3 otherwise (for example coolant 110 / 116 °C, 230 / 241 °F; oil 125 / 135 °C, 257 / 275 °F). If your car is tuned, set your tune's values on the phone page; one tap goes back to stock. A gauge in the red also flashes its frame, so it catches your eye when you are not looking at it.
+* **Warning colours:** a gauge turns yellow, then red. Most cars this dash goes into are tuned, so it comes with limits for an EA888 Gen 3 on a Stage 1 or Stage 2 tune: yellow where a stock or Stage 1 car reaches its limit, red at a Stage 2 ceiling (for example boost 1.85 / 2.05 bar, 26.8 / 29.7 psi; turbo speed 189 / 212 thousand rpm, and higher for an IS38 turbo, which the dash recognises from your car or you choose on the phone page; coolant 110 / 116 °C, 230 / 241 °F; oil 125 / 135 °C, 257 / 275 °F; lambda yellow at 0.85 and below, red at 0.75). Set your own tune's values on the phone page; one tap goes back to these. A gauge in the red also flashes its frame, so it catches your eye when you are not looking at it.
 * **Max values:** each gauge shows the highest value since the dash started (the lowest for knock). Clear them from the phone page.
 * **Brightness:** a day and a night level, set from the phone page; the night level follows the dash's clock. The screen also says why the gauges are empty: NO DONGLE, CAR OFF or NO DATA.
 * **While a phone app has the car:** when Simos.app connects to the dongle, the dash shows an idle screen with the logo, the time and **DONGLE ACTIVE · APP CONNECTED**, and goes back to the gauges a few seconds after the app disconnects.
@@ -47,7 +47,7 @@ PhantomDASH reads what the engine computer answers to standard diagnostic reques
 
 | Engine computer | Software code the car reports | Status |
 |---|---|---|
-| Simos 18.1 / 18.6 | `SC8...` | **Supported.** The dash reads the engine computer's identity from the car and loads that car's factory limits. |
+| Simos 18.1 / 18.6 | `SC8...` | **Supported.** The dash reads the engine computer's identity from the car and, with **Engine list** on automatic, picks the list for it. |
 | Simos 18.10 | `SCG...` | **Uses the same list as the Mk7.** If a value looks wrong, choose the list by hand under **Engine list** on the phone page. |
 | Simos 19 (Gen 4, Mk8 and newer) | `SCR...` and others | **Logging supported.** The dash reads the engine computer's identity and loads the Mk8 list by itself. Flashing these cars is not supported yet. |
 
@@ -77,7 +77,7 @@ It looks and works like your phone's own settings: grouped lists, switches and s
   * **Status:** the engine computer the dongle found, the list in use, the dongle link.
   * **Gauges:** tap a gauge to choose what it shows from the list; clear the max values.
   * **Warning limits:** for each gauge shown, the stock yellow and red limits and where they come from, and fields to set your own if your car is tuned (**Stock** goes back).
-  * **Engine list:** automatic (the dash picks the list from the engine computer) or choose by hand.
+  * **Engine list:** automatic (the dash picks the list from the engine computer: the faster HSL list when your tune's software has one, else mode 22) or choose by hand.
 * **Look tab**
   * **Theme:** automatic day and night (choose a day theme and a night theme), or one theme always.
   * **Layout:** Quad, Grid or Focus; Open (thin lines between the gauges) or Cards.
@@ -141,7 +141,7 @@ If the problem may be the dongle's side, send its log too (see the PhantomCAN do
 
 ## Safety and legal
 
-PhantomDASH shows what the engine computer reports. It is not a substitute for the car's own warning lights and gauges, and its warning limits are not a safety system: they come from your car's own factory calibration where the dash knows it, from general limits for the engine otherwise, or from values you set yourself, so check them against what your car and its tune allow. Do not use the phone page while driving (it refuses changes above 10 mph). Use at your own risk; there is no warranty. The dash does not change anything in the car.
+PhantomDASH shows what the engine computer reports. It is not a substitute for the car's own warning lights and gauges, and its warning limits are not a safety system: they are general limits for the engine on a Stage 1 or Stage 2 tune, or values you set yourself, so check them against what your car and its tune allow. Do not use the phone page while driving (it refuses changes above 10 mph). Use at your own risk; there is no warranty. The dash does not change anything in the car.
 It does not hide or alter any fault codes or emissions data.
 
 PhantomDASH and Ghostwerks are names of this product and its maker. Simos.app is a separate product by its own developer. PhantomDASH works beside it through the PhantomCAN dongle; it is not made, sponsored, endorsed or supported by them.
