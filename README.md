@@ -53,7 +53,7 @@ PhantomDASH reads what the engine computer answers to standard diagnostic reques
 
 Other engines and cars may work with the OBD-II list (the standard emissions-related values).
 
-**Kinds of lists.** Mode 22 lists (the engine computer's standard identifiers) are what the dash uses by default. HSL lists (the engine computer's high-speed logging, marked "(HSL)" in the list picker) need a tune with the HSL patch; the dongle supports them for the engine computer. If the engine computer refuses HSL, the phone page says so; choose a mode 22 list.
+**Kinds of lists.** Mode 22 lists (the engine computer's standard identifiers) are what the dash uses by default. HSL lists (high-speed logging, marked "(HSL)" in the list picker) need a tune with the HSL patch; the dongle supports them for the engine computer and the DSG gearbox. On automatic, a computer that refuses HSL gets its mode 22 list instead.
 
 
 ## First start
@@ -77,7 +77,7 @@ It looks and works like your phone's own settings: grouped lists, switches and s
   * **Status:** the engine computer the dongle found, the list in use, the dongle link.
   * **Gauges:** tap a gauge to choose what it shows from the list; clear the max values.
   * **Warning limits:** for each gauge shown, the stock yellow and red limits and where they come from, and fields to set your own if your car is tuned (**Stock** goes back).
-  * **Engine list:** automatic (the dash picks the list from the engine computer: the faster HSL list when your tune's software has one, else mode 22) or choose by hand.
+  * **Engine list:** automatic (the dash picks the list from the car: the faster HSL list when your tune's software has one, else mode 22) or choose by hand. **Automatic follows** the engine (the default) or the DSG gearbox; the dash shows one of them at a time, and with the gearbox it still reads engine speed and road speed from the engine for the shift lights and the driving lock. Switching between them clears the gauges the other list does not have, so set your gauges again afterwards.
 * **Look tab**
   * **Theme:** automatic day and night (choose a day theme and a night theme), or one theme always.
   * **Layout:** Quad, Grid or Focus; Open (thin lines between the gauges) or Cards.
@@ -130,7 +130,7 @@ If the problem may be the dongle's side, send its log too (see the PhantomCAN do
 | The gauges show `--` and **NO DATA** | The dongle is linked, but no values have come for a few seconds: the car is not answering it. If it stays, turn the ignition off and on, or unplug the dongle and plug it back in, and send both logs (see [Sending a log](#sending-a-log)). |
 | The gauges show `--` | The dongle is connected but the car has not answered yet, or the value is not offered by the list in use. |
 | The idle screen (logo and **APP CONNECTED**) stays | A phone app (Simos.app) is still connected to the dongle, perhaps in the background on your phone: close it. The gauges come back a few seconds after it disconnects. If the dongle lost power during the app session, the dash shows **NO DONGLE** after an hour, or at once when the ignition is turned off and on. |
-| An HSL list shows nothing | The engine computer did not accept HSL (it needs a tune with the HSL patch), or the list is for the gearbox. Choose a mode 22 list. |
+| An HSL list shows nothing | The engine computer or the gearbox did not accept HSL (it needs a tune with the HSL patch). Choose a mode 22 list, or turn on automatic, which does so by itself. |
 | The night brightness never changes | It needs the dash's clock. The clock sets itself from your phone when you open the page, but it keeps the time with the power off only if a coin cell (CR927) sits in the board's battery holder. |
 | The page says "No list of values loaded" | Load the list file (`.pdv`) you were sent under **Update**, LIST OF VALUES. |
 | "Not while driving" | The car is moving faster than 10 mph; slow down or stop. |
